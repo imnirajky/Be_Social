@@ -18,7 +18,14 @@
     },
     "homepage": "https://github.com/imnirajky/Be_Social#readme",
     "dependencies": {
+        "connect-mongo": "^4.6.0",
+        "cookie-parser": "^1.4.6",
+        "ejs": "^3.1.8",
         "express": "^4.18.1",
-        "nodemon": "^2.0.16"
+        "express-session": "^1.17.3",
+        "mongoose": "^6.3.5",
+        "nodemon": "^2.0.16",
+        "passport": "^0.6.0",
+        "passport-local": "^1.0.0"
     }
 }
