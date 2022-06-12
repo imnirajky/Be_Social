@@ -16,7 +16,7 @@
         "url": "https://github.com/imnirajky/Be_Social/issues"
     },
     "engines":{
-        "node":"16.15.0"
+        "node":"14.16.0"
     },
     "homepage": "https://github.com/imnirajky/Be_Social#readme",
     "dependencies": {
