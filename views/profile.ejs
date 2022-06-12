@@ -45,6 +45,7 @@
             height: 50px;
             width: 200px;
             border: 2px solid rgb(229, 226, 226);
+            margin: 5px;
         }
         
         a {
@@ -52,35 +53,49 @@
             font-size: 20px;
             color: white;
         }
+        
+        #userBox {
+            width: 100%;
+            height: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
     </style>
 </head>
 
 <body>
-    <div id="mainBox">
-        <div id="dpStyle">
-            <img src="/dp.jpg" alt="dp">
-        </div>
-        <div id="bottomStyle">
-            <h3>
-                <%=user.name%>
-            </h3>
-            <h4>
-                <%=user.email%>
-            </h4>
-            <h4>
-                <%=user.dob%>
-            </h4>
-        </div>
-        <div>
+    <div style="width: 100%; height: 100%;">
+        <div style="width: 100%; height: 8%; background-color:black;">
             <button>
-            <a href="/users/signout">
-                Logout
-            </a>
+                <a href="/users/signout ">
+                    Logout
+                </a>
+            </button>
+            <button>
+                <a href="/">
+                    Home
+                </a>
             </button>
         </div>
+        <div id="userBox">
+            <div id="userDP">
+                <img src="/dp.jpg" alt="dp">
+            </div>
+            <div id="userDetails">
+                <h2>
+                    <%=user.name%>
+                        <br>
+                        <%=user.email%>
+                            <br>
+                            <%=user.dob%>
+                </h2>
+            </div>
+        </div>
     </div>
-</body>
 
-</html>
+</body>
 
 </html>

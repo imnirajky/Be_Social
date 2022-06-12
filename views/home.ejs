@@ -10,7 +10,7 @@
         }
         
         #mainPage {
-            height: 100%;
+            height: 90%;
             width: 100%;
             background-color: white;
             display: flex;
@@ -36,6 +36,7 @@
             height: 50px;
             width: 200px;
             border: 2px solid rgb(229, 226, 226);
+            margin: 15px;
         }
         
         a {
@@ -48,21 +49,132 @@
             font-size: 35px;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
+        
+        #top {
+            height: 10%;
+            width: 100%;
+            background-color: black;
+        }
+        
+        #box-Post {
+            height: auto;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin: auto;
+            margin-top: 40px;
+            align-items: center;
+        }
+        
+        #box-Post div {
+            margin: 40px;
+        }
+        
+        #postDatabtn {
+            height: 22px;
+            width: auto;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 5px;
+        }
+        
+        #feed-posts {
+            height: 100px;
+            width: 253px;
+            background-color: rgb(235, 234, 234);
+            padding: 10px;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        #userD {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 15px;
+        }
+        
+        #postDesign {
+            height: auto;
+            width: 500px;
+            border: 1px solid rgb(96, 95, 95);
+            border-radius: 3px;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <div id="mainPage">
-        <div id="bgimg"></div>
-        <div id="explore">
-            <h3>
-                Welcome to Be_Social
-            </h3>
-            <button>
-                <a href="/users/signin">Login</a>
-            </button>
+    <div>
+        <!---------------->
+        <div id="top">
+            <%if(locals.user){%>
+                <div>
+                    <button>
+                        <a href="/users/profile">
+                            <%= user.name %>
+                        </a>
+                    </button>
+                </div>
+                <%}%>
         </div>
+        <!---------------->
+        <%if(locals.user === undefined){%>
+            <div id="mainPage">
+                <div id="bgimg"></div>
+                <div id="explore">
+                    <h3>
+                        Welcome to Be_Social
+                    </h3>
+                    <button>
+                    <a href="/users/signin">Login</a>
+                </button>
+                </div>
+            </div>
+            <%}else{%>
+                <div id="box-Post">
+                    <div id="feed-posts">
+                        <form action="/posts/create" id="new-post-form" method="POST">
+                            <textarea placeholder="Type Here..." name="content" cols="30" rows="4"></textarea>
+                            <input id="postDatabtn" type="submit" value="Post">
+                        </form>
+                    </div>
+
+                    <ul>
+                        <%for(post of post){%>
+                            <li>
+                                <div id="postDesign">
+                                    <div id="userD">
+                                        User
+                                        <%=post.user.name%>
+                                    </div>
+                                    <h3>
+                                        <%=post.content%>
+                                    </h3>
+                                    <br>
+                                    <h4>
+                                        Comments:-
+                                    </h4>
+                                    <%for(comments of post.comment){%>
+                                        <%=comments.comment%>
+                                            <%}%>
+                                                <form action="/comment/create" method="POST">
+                                                    <input name="comment" placeholder="Type Comment..." required>
+                                                    <input type="hidden" name="postId" value="<%= post._id %>">
+                                                    <input id="postDatabtn" type="submit" value="Add Comment">
+                                                </form>
+                                </div>
+                            </li>
+                            <%}%>
+                    </ul>
+                </div>
+                <%}%>
+                    <!---------------------------->
     </div>
+
 </body>
 
 </html>

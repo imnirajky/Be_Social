@@ -30,7 +30,7 @@ module.exports.createNewAccount = function(req, res) {
             User.create(details, function(err, user) {
                 if (err) {
                     console.log('Error in creating user!!!');
-                    return;
+                    return res.redirect('/users/signup');
                 }
             });
         }
